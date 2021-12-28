@@ -1,10 +1,10 @@
-<script>
-	export let name;
+<script lang="ts">
+	import { Canvas } from "./components";
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<h1>Animated Dot</h1>
+	<Canvas height={500} width={500} />
 </main>
 
 <style>
