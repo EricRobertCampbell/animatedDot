@@ -1,10 +1,13 @@
-export class Dot {
+import type { CanvasObject } from "../types";
+
+export class Dot implements CanvasObject {
 	ctx;
 	width;
 	height;
 	lastTimestamp;
 	x;
 	y;
+
 	dxdt = 150;
 	dydt = 200;
 	radius = 10;
@@ -16,16 +19,14 @@ export class Dot {
 		this.x = 0;
 		this.y = 0;
 	}
-	animate(timeStamp) {
-		console.log("Called animate");
+	draw(timestamp) {
+		// console.log("Called Dot draw function");
 		const deltaT =
-			timeStamp === undefined || this.lastTimestamp === undefined
+			timestamp === undefined || this.lastTimestamp === undefined
 				? 0
-				: timeStamp - this.lastTimestamp;
+				: timestamp - this.lastTimestamp;
 
-		this.lastTimestamp = timeStamp;
-
-		this.ctx.clearRect(0, 0, this.width, this.height);
+		this.lastTimestamp = timestamp;
 
 		this.ctx.beginPath();
 		this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
@@ -42,7 +43,5 @@ export class Dot {
 		if (this.y < 0 || this.y > this.height) {
 			this.dydt *= -1;
 		}
-
-		window.requestAnimationFrame(this.animate.bind(this));
 	}
 }
